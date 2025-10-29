@@ -179,16 +179,6 @@ http://localhost:3000
 > “Beberapa komponen sudah dibuat modular namun belum sepenuhnya di-refactor, dan unit test belum diimplementasikan meskipun saya berpengalaman menggunakan Jest.”
 > — Statement reflected in *Known Limitations* and *Future Improvements* sections.
 
----
-
-```
-
----
-
-Apakah kamu ingin saya bantu tambahkan **preview screenshot section** (misalnya “📸 Screenshots from the App”) di bawah “Project Overview” agar README-mu terlihat lebih profesional di GitHub?  
-Kalau iya, nanti saya buatkan templatenya juga biar kamu tinggal isi link gambarnya dari hasil deployment.
-```
-
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
