@@ -52,7 +52,8 @@ Berikut versi **Markdown README.md** profesional dari case study kamu — sudah 
 - Password: `user`  
 
 **GitHub Repository:**  
-[https://github.com/adhyastan/hiring-platform](https://github.com/adhyastan/hiring-platform)
+
+[https://github.com/adhyastanf/job-application](https://github.com/adhyastanf/job-application)
 
 ---
 
@@ -65,10 +66,11 @@ The main objective is to translate the **Figma design** into a **pixel-perfect, 
 ---
 
 ## 3. Tech Stack Used
-- **Framework:** Next.js 14 (App Router)  
+- **Framework:** Next.js 15 (App Router)  
 - **Styling:** TailwindCSS + Shadcn/UI  
 - **State Management:** Zustand (persist middleware)  
 - **API Data:** Mock JSON (simulated fetch API)  
+- **Fetch Data:** Axios
 - **Form Validation:** React Hook Form + Zod  
 - **Authentication:** Simple static auth (server-side credential check & middleware for protected pages)  
 - **Deployment:** Vercel  
