@@ -2,9 +2,9 @@ import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTi
 
 export function EmptyState({ title, description, icon, children }) {
   return (
-    <Empty className='h-screen'>
+    <Empty className='h-full'>
       <EmptyHeader>
-        <EmptyMedia variant='icon'>{icon}</EmptyMedia>
+        {icon}
         <EmptyTitle>{title}</EmptyTitle>
         <EmptyDescription>{description}</EmptyDescription>
       </EmptyHeader>

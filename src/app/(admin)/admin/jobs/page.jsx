@@ -100,7 +100,7 @@ function CardJob({ id, slug, title, display_text, cta, started_on_text, status }
 
   return (
     <>
-      <Card className='gap-3'>
+      <Card className='gap-3 rounded-lg'>
         <CardHeader>
           <div className='flex space-x-4'>
             {badgeComponent(status)}
@@ -127,9 +127,14 @@ function CardSidebar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <Card className='self-start flex'>
-      <CardContent className='text-neutral/10'>
-        <p className='text-xl'>Recruit the best candidate</p>
+    <Card
+      className='self-start flex bg-cover bg-center bg-no-repeat text-white'
+      style={{
+        backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/create-job.jpg')`,
+      }}
+    >
+      <CardContent>
+        <p className='font-semibold'>Recruit the best candidate</p>
         <p className='text-sm'>Create jobs, invite, and hire with ease</p>
       </CardContent>
       <CardFooter className='flex-1'>

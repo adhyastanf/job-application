@@ -7,6 +7,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { useCandidateStore } from '@/lib/store/useCandidateStore';
 import { useEffect } from 'react';
 import { columns } from '../constant';
+import { EmptyStateTable } from '@/components/assets/EmptyStateTableIcon';
 
 export default function ManageJob() {
   const { candidates, loading, fetchCandidates } = useCandidateStore((state) => state);
@@ -16,11 +17,11 @@ export default function ManageJob() {
   }, []);
 
   return (
-    <PageContainer scrollable={true}>
-      <div className='flex flex-1 flex-col space-y-6'>
+    <PageContainer scrollable={false}>
+      <div className='flex flex-1 flex-col space-y-6 h-full'>
         <h2 className='font-bold'>Frontend Developer</h2>
         <Card className='flex-1'>
-          <CardContent>
+          <CardContent className='h-full '>
             <TableManageCandidate data={candidates} loading={loading} />
           </CardContent>
         </Card>

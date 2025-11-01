@@ -1,6 +1,7 @@
 import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
 import { ArrowUpDown } from 'lucide-react';
+import Link from 'next/link';
 
 export const options = [
   {
@@ -135,7 +136,11 @@ export const columns = [
   {
     accessorKey: 'linkedin_link',
     header: <div className='text-left'>LINK LINKEDIN</div>,
-    cell: ({ row }) => <div className='lowercase text-left'>{row.getValue('linkedin_link')}</div>,
+    cell: ({ row }) => (
+      <div className='lowercase text-left'>
+        <a href={row.getValue('linkedin_link')} target='_blank'>{row.getValue('linkedin_link')}</a>
+      </div>
+    ),
   },
 ];
 
