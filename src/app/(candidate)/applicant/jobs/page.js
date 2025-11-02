@@ -92,8 +92,8 @@ function CardDescription({ data }) {
   const { id, title, jobDesc, slug } = data;
 
   return (
-    <Card className='h-full flex flex-col'>
-      <CardHeader>
+    <Card className='h-full flex flex-col gap-0'>
+      <CardHeader className='gap-0'>
         <div className='flex justify-between shrink-0'>
           <div className='flex space-x-4'>
             <Avatar className='rounded-sm w-12 h-12 border-neutral/40'>
@@ -110,7 +110,7 @@ function CardDescription({ data }) {
             <Button variant='secondary'>Apply Job</Button>
           </Link>
         </div>
-        <Separator />
+        <Separator className='my-6' />
       </CardHeader>
       <CardContent className='flex-1 overflow-hidden'>
         <ScrollArea className='h-full '>
@@ -120,7 +120,6 @@ function CardDescription({ data }) {
             <li>{jobDesc}sfdfsfsd</li>
             <li>{jobDesc}sfdfsfsd</li>
             <li>{jobDesc}sfdfsfsd</li>
-            {/* Tambahkan lebih banyak item untuk testing scroll */}
             <li>Additional job description item 1</li>
             <li>Additional job description item 2</li>
             <li>Additional job description item 3</li>

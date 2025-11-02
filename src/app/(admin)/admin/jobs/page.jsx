@@ -1,31 +1,23 @@
 'use client';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Badge } from '@/components/ui/badge';
-import { Button, buttonVariants } from '@/components/ui/button';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { InputGroup, InputGroupAddon, InputGroupInput, InputGroupText } from '@/components/ui/input-group';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Separator } from '@/components/ui/separator';
-import { Textarea } from '@/components/ui/textarea';
-import { cn } from '@/lib/utils';
-import * as RadioGroupPrimitive from '@radix-ui/react-radio-group';
-import { Search } from 'lucide-react';
-import { useForm } from 'react-hook-form';
-import { fields } from './constant';
-import { jobSchema } from '@/lib/schema';
-import ModalJobOpening from './ModalJobOpening';
-import { useEffect, useState } from 'react';
 import { EmptyState } from '@/components/EmptyState';
-import { useJobStore } from '@/lib/store/useJobStore';
-import Link from 'next/link';
 import PageContainer from '@/components/layout/page-container';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
+import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group';
+import { useJobStore } from '@/lib/store/useJobStore';
+import { Search } from 'lucide-react';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import ModalJobOpening from './ModalJobOpening';
 
 export default function AdminPage() {
   const { jobs, loading, fetchJobs } = useJobStore((state) => state);
+  const [search, setSearch] = useState('');
+
+  const filterData = jobs.filter((item) => {
+    return item.title.toLowerCase().includes(search.toLowerCase());
+  });
 
   useEffect(() => {
     fetchJobs();
@@ -34,17 +26,26 @@ export default function AdminPage() {
   return (
     <PageContainer scrollable={true}>
       <div className='flex flex-1 flex-col space-y-2'>
-        <div className='flex gap-4'>
+        {/* Tambahkan flex-col ke flex-row agar responsif */}
+        <div className='flex flex-col lg:flex-row gap-4'>
           <section className='flex-1 space-y-4'>
             <InputGroup>
-              <InputGroupInput placeholder='Search by job details' required />
+              <InputGroupInput
+                placeholder='Search by job details'
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
               <InputGroupAddon className='text-primary' align='inline-end'>
                 <Search />
               </InputGroupAddon>
             </InputGroup>
-            <JobList data={jobs} loading={loading} />
+            <JobList data={filterData} loading={loading} />
           </section>
-          <CardSidebar />
+
+          {/* Tambah class responsif agar pindah ke bawah di layar kecil */}
+          <div className='lg:w-auto w-full'>
+            <CardSidebar />
+          </div>
         </div>
       </div>
     </PageContainer>
@@ -64,7 +65,9 @@ function JobList({ data, loading }) {
     return (
       <EmptyState>
         <p className='text-lg font-semibold'>No job openings available</p>
-        <p className='text-gray-500'>Create a job opening now and start the candidate process.</p>
+        <p className='text-gray-500'>
+          Create a job opening now and start the candidate process.
+        </p>
         <Button variant='secondary' onClick={() => setOpen(true)}>
           Create a new job
         </Button>
@@ -79,7 +82,18 @@ function JobList({ data, loading }) {
         const { id, title, list_card, salary_range, status, slug } = job;
         const { display_text } = salary_range;
         const { cta, started_on_text } = list_card;
-        return <CardJob id={id} title={title} display_text={display_text} status={status} cta={cta} slug={slug} started_on_text={started_on_text} key={idx} />;
+        return (
+          <CardJob
+            id={id}
+            title={title}
+            display_text={display_text}
+            status={status}
+            cta={cta}
+            slug={slug}
+            started_on_text={started_on_text}
+            key={idx}
+          />
+        );
       })}
     </div>
   );
@@ -87,14 +101,33 @@ function JobList({ data, loading }) {
 
 function CardJob({ id, slug, title, display_text, cta, started_on_text, status }) {
   function badgeComponent(status) {
-    const baseClass = 'border rounded-sm px-4 py-2 cursor-pointer select-none transition';
+    const baseClass =
+      'border rounded-sm px-4 py-2 cursor-pointer select-none transition';
 
     if (status === 'active') {
-      return <Badge className={`${baseClass} bg-success-surface text-success border-success-border hover:opacity-80`}>Active</Badge>;
+      return (
+        <Badge
+          className={`${baseClass} bg-success-surface text-success border-success-border hover:opacity-80`}
+        >
+          Active
+        </Badge>
+      );
     } else if (status === 'draft') {
-      return <Badge className={`${baseClass} bg-secondary-surface text-secondary border-secondary-border hover:opacity-80`}>Draft</Badge>;
+      return (
+        <Badge
+          className={`${baseClass} bg-secondary-surface text-secondary border-secondary-border hover:opacity-80`}
+        >
+          Draft
+        </Badge>
+      );
     } else {
-      return <Badge className={`${baseClass} bg-destructive-surface text-destructive border-destructive-border hover:opacity-80`}>Inactive</Badge>;
+      return (
+        <Badge
+          className={`${baseClass} bg-destructive-surface text-destructive border-destructive-border hover:opacity-80`}
+        >
+          Inactive
+        </Badge>
+      );
     }
   }
 
@@ -102,20 +135,23 @@ function CardJob({ id, slug, title, display_text, cta, started_on_text, status }
     <>
       <Card className='gap-3 rounded-lg'>
         <CardHeader>
-          <div className='flex space-x-4'>
+          <div className='flex flex-wrap gap-2'>
             {badgeComponent(status)}
-            <Badge variant='outline' className='border border-neutral/10 rounded-sm px-4 py-2'>
+            <Badge
+              variant='outline'
+              className='border border-neutral/10 rounded-sm px-4 py-2'
+            >
               {started_on_text}
             </Badge>
           </div>
         </CardHeader>
-        <CardContent className='flex justify-between'>
+        <CardContent className='flex flex-col md:flex-row justify-between gap-4'>
           <div>
             <p className='font-bold text-xl'>{title}</p>
             <p>{display_text}</p>
           </div>
           <Link href={`/admin/jobs/${slug}-${id}`}>
-            <Button className='self-end'>{cta}</Button>
+            <Button className='self-start md:self-end'>{cta}</Button>
           </Link>
         </CardContent>
       </Card>
@@ -128,7 +164,7 @@ function CardSidebar() {
 
   return (
     <Card
-      className='self-start flex bg-cover bg-center bg-no-repeat text-white'
+      className='self-start flex bg-cover bg-center bg-no-repeat text-white mt-4 lg:mt-0'
       style={{
         backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/create-job.jpg')`,
       }}

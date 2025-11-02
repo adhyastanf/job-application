@@ -1,40 +1,42 @@
 'use client';
 
+import HandDetector from '@/components/Camera';
 import CommandComponent from '@/components/command';
+import PageContainer from '@/components/layout/page-container';
+import Modal from '@/components/modal';
 import PopoverComponent from '@/components/popover';
+import SuccessComponent from '@/components/SuccessComponent';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Separator } from '@/components/ui/separator';
+import { generateResumeSchema } from '@/lib/schema';
+import { useJobStore } from '@/lib/store/useJobStore';
 import { cn } from '@/lib/utils';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { format } from 'date-fns/format';
-import { ArrowLeft, CalendarIcon, ChevronDown, Upload } from 'lucide-react';
-import { useEffect, useMemo, useState } from 'react';
+import { ArrowLeft, CalendarIcon, ChevronDown, ChevronRight, Upload } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { domicileOptions, listCountry } from './constant';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { useJobStore } from '@/lib/store/useJobStore';
-import { generateResumeSchema } from '@/lib/schema';
-import PageContainer from '@/components/layout/page-container';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import Link from 'next/link';
-import SuccessComponent from '@/components/SuccessComponent';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { Separator } from '@/components/ui/separator';
 
-export default function ResumePage() {
+export default function ResumePage({ jobConfigs }) {
+  const [controls, setControls] = useState(null);
   const [success, setSuccess] = useState(false);
+  const [capturedPhoto, setCapturedPhoto] = useState(false);
+  const [selected, setSelected] = useState(listCountry[0]);
+  const [open, setOpen] = useState(false);
   const { jobConfig, loadingConfig, fetchJobConfig } = useJobStore((state) => state);
-
-  useEffect(() => {
-    fetchJobConfig();
-  }, [fetchJobConfig]);
 
   const resumeSchema = useMemo(() => {
     if (!jobConfig) return null;
@@ -45,8 +47,6 @@ export default function ResumePage() {
     const field = config?.application_form?.sections?.[0]?.fields?.find((f) => f.key === key);
     return field?.validation?.required === true;
   }
-
-  const [selected, setSelected] = useState(listCountry[0]);
 
   const form = useForm({
     resolver: resumeSchema ? zodResolver(resumeSchema) : undefined,
@@ -62,15 +62,45 @@ export default function ResumePage() {
     },
   });
 
-  function handleSubmit(data) {
+  const captured = form.watch('photo_profile');
+
+  const handleSubmit = (data) => {
+    console.log('Form submitted:', data);
     setSuccess(true);
-  }
+  };
+
+  useEffect(() => {
+    fetchJobConfig();
+  }, [fetchJobConfig]);
+
+  const handlePhotoCaptured = useCallback((img) => {
+    setCapturedPhoto(img);
+  }, []);
+
+  const handleHandDetectorReady = useCallback((api) => {
+    setControls(api);
+  }, []);
+
+  const handleRetakePhoto = () => {
+    if (controls?.resetGesture) {
+      controls.resetGesture();
+      setCapturedPhoto(null);
+    }
+  };
+
+  const handleSubmitPhoto = () => {
+    if (capturedPhoto) {
+      form.setValue('photo_profile', capturedPhoto);
+      setOpen(false);
+      alert('📸 Foto berhasil dimasukkan ke form!');
+    } else {
+      alert('Belum ada foto yang diambil!');
+    }
+  };
 
   if (loadingConfig || !resumeSchema) return <div>Loading config...</div>;
 
-  if (success) {
-    return <SuccessComponent />;
-  }
+  if (success) return <SuccessComponent />;
 
   return (
     <PageContainer scrollable={false}>
@@ -101,34 +131,55 @@ export default function ResumePage() {
                         <FormLabel className='text-xs font-bold block space-y-2'>
                           <div>Photo Profile</div>
                           <Avatar className='rounded-sm w-36 h-36'>
-                            <AvatarImage src='https://github.com/shadcn.png' />
+                            <AvatarImage src={captured || 'https://github.com/shadcn.png'} />
                             <AvatarFallback>CN</AvatarFallback>
                           </Avatar>
                         </FormLabel>
+
+                        {/* Tombol buka modal */}
+                        <Button type='button' variant='outline' className='max-w-36 flex items-center space-x-2' onClick={() => setOpen(true)}>
+                          <Upload />
+                          Take a Picture
+                        </Button>
+
                         <FormControl>
-                          <Dialog>
-                            <DialogTrigger asChild className='max-w-36'>
-                              <Button variant='outline' className='flex items-center space-x-2'>
-                                <Upload />
-                                Take a Picture
-                              </Button>
-                            </DialogTrigger>
-                            <DialogContent>
-                              <DialogHeader>
-                                <DialogTitle>Raise Your Hand to Capture</DialogTitle>
-                                <DialogDescription>We'll take a photo once your hand pose is detected</DialogDescription>
-                              </DialogHeader>
-                              <div className='h-[400px] bg-muted flex items-center justify-center'>Camera preview</div>
-                              <DialogFooter>
-                                <div className='flex items-center justify-center space-x-4 flex-1'>
-                                  <Button>Retake Photo</Button>
-                                  <Button>Submit</Button>
-                                </div>
-                              </DialogFooter>
-                            </DialogContent>
-                          </Dialog>
+                          <Input type='hidden' {...field} value={captured || ''} />
                         </FormControl>
+
                         <FormMessage />
+
+                        <Modal title='Raise your hand to capture' description="We'll take a photo once your hand pose is detected" isOpen={open} onClose={() => setOpen(false)} separator={false} className='min-w-[640px] space-y-4'>
+                          <div className='space-y-4'>
+                            <div className='bg-muted flex items-center justify-center overflow-hidden'>
+                              <HandDetector onPhotoCaptured={handlePhotoCaptured} onReady={handleHandDetectorReady} />
+                            </div>
+
+                            <div className='space-y-4'>
+                              <p className='text-xs'>To take a picture, follow the hand poses in the order shown below. The system will automatically capture the image once the final pose is detected.</p>
+
+                              <div className='flex items-center justify-center space-x-4 flex-1'>
+                                {!capturedPhoto ? (
+                                  <>
+                                    <Image src='/pose3.png' width={50} height={50} alt='pose-3' />
+                                    <ChevronRight />
+                                    <Image src='/pose2.png' width={50} height={50} alt='pose-2' />
+                                    <ChevronRight />
+                                    <Image src='/pose1.png' width={50} height={50} alt='pose-1' />
+                                  </>
+                                ) : (
+                                  <>
+                                    <Button type='button' onClick={handleRetakePhoto}>
+                                      Retake Photo
+                                    </Button>
+                                    <Button type='button' onClick={handleSubmitPhoto}>
+                                      Submit
+                                    </Button>
+                                  </>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        </Modal>
                       </FormItem>
                     )}
                   />
@@ -306,6 +357,7 @@ export default function ResumePage() {
               </Form>
             </CardContent>
           </ScrollArea>
+
           <Separator />
           <CardFooter>
             <Button className='w-full' type='submit' form='form-application'>
