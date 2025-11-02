@@ -1,97 +1,4 @@
 import { Checkbox } from '@/components/ui/checkbox';
-import { Button } from '@/components/ui/button';
-import { ArrowUpDown } from 'lucide-react';
-import Link from 'next/link';
-
-export const options = [
-  {
-    value: 'mandatory',
-    label: 'mandatory',
-  },
-  {
-    value: 'optional',
-    label: 'optional',
-  },
-  {
-    value: 'off',
-    label: 'off',
-  },
-];
-
-export const fields = [
-  {
-    name: 'fullname',
-    label: 'Full Name',
-    options: [
-      { label: 'Mandatory', value: 'mandatory' },
-      { label: 'Optional', value: 'optional', disabled: true },
-      { label: 'Off', value: 'off', disabled: true },
-    ],
-  },
-  {
-    name: 'profile',
-    label: 'Photo Profile',
-    options: [
-      { label: 'Mandatory', value: 'mandatory' },
-      { label: 'Optional', value: 'optional', disabled: true },
-      { label: 'Off', value: 'off', disabled: true },
-    ],
-  },
-  {
-    name: 'gender',
-    label: 'Gender',
-    options: [
-      { label: 'Mandatory', value: 'mandatory' },
-      { label: 'Optional', value: 'optional' },
-      { label: 'Off', value: 'off' },
-    ],
-  },
-  {
-    name: 'domicile',
-    label: 'Domicile',
-    options: [
-      { label: 'Mandatory', value: 'mandatory' },
-      { label: 'Optional', value: 'optional' },
-      { label: 'Off', value: 'off' },
-    ],
-  },
-  {
-    name: 'email',
-    label: 'Email',
-    options: [
-      { label: 'Mandatory', value: 'mandatory' },
-      { label: 'Optional', value: 'optional', disabled: true },
-      { label: 'Off', value: 'off', disabled: true },
-    ],
-  },
-  {
-    name: 'phone',
-    label: 'Phone Number',
-    options: [
-      { label: 'Mandatory', value: 'mandatory' },
-      { label: 'Optional', value: 'optional' },
-      { label: 'Off', value: 'off' },
-    ],
-  },
-  {
-    name: 'linkedin',
-    label: 'Linkedin link',
-    options: [
-      { label: 'Mandatory', value: 'mandatory' },
-      { label: 'Optional', value: 'optional' },
-      { label: 'Off', value: 'off' },
-    ],
-  },
-  {
-    name: 'birth',
-    label: 'Date of birth',
-    options: [
-      { label: 'Mandatory', value: 'mandatory' },
-      { label: 'Optional', value: 'optional' },
-      { label: 'Off', value: 'off' },
-    ],
-  },
-];
 
 export const columns = [
   {
@@ -138,7 +45,9 @@ export const columns = [
     header: <div className='text-left'>LINK LINKEDIN</div>,
     cell: ({ row }) => (
       <div className='lowercase text-left'>
-        <a href={row.getValue('linkedin_link')} target='_blank'>{row.getValue('linkedin_link')}</a>
+        <a href={row.getValue('linkedin_link')} target='_blank'>
+          {row.getValue('linkedin_link')}
+        </a>
       </div>
     ),
   },
