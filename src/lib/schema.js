@@ -120,3 +120,8 @@ export function generateResumeSchema(config) {
 
   return z.object(shape);
 }
+
+export const loginSchema = z.object({
+  email: z.string().min(1, { message: 'Email wajib diisi' }).email({ message: 'Format email tidak valid' }),
+  password: z.string().min(8, { message: 'Password minimal 8 karakter' }),
+});

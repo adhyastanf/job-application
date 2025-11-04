@@ -39,9 +39,9 @@ export default function ResumeCandidatePage({ jobConfigs }) {
   const { jobConfig, loadingConfig, fetchJobConfig } = useJobStore((state) => state);
 
   const resumeSchema = useMemo(() => {
-    if (!jobConfig) return null;
-    return generateResumeSchema(jobConfig);
-  }, [jobConfig]);
+    if (!jobConfigs) return null;
+    return generateResumeSchema(jobConfigs);
+  }, [jobConfigs]);
 
   function isFieldRequired(config, key) {
     const field = config?.application_form?.sections?.[0]?.fields?.find((f) => f.key === key);
@@ -69,9 +69,9 @@ export default function ResumeCandidatePage({ jobConfigs }) {
     setSuccess(true);
   };
 
-  useEffect(() => {
-    fetchJobConfig();
-  }, [fetchJobConfig]);
+  // useEffect(() => {
+  //   fetchJobConfig();
+  // }, [fetchJobConfig]);
 
   const handlePhotoCaptured = useCallback((img) => {
     setCapturedPhoto(img);
@@ -98,7 +98,7 @@ export default function ResumeCandidatePage({ jobConfigs }) {
     }
   };
 
-  if (loadingConfig || !resumeSchema) return <div>Loading config...</div>;
+  // if (loadingConfig) return <div>Loading config...</div>;
 
   if (success) return <SuccessComponent />;
 
@@ -191,7 +191,7 @@ export default function ResumeCandidatePage({ jobConfigs }) {
                       <FormItem>
                         <FormLabel className='text-xs font-normal'>
                           Full Name
-                          {isFieldRequired(jobConfig, 'full_name') && <span className='text-red-500'>*</span>}
+                          {isFieldRequired(jobConfigs, 'full_name') && <span className='text-red-500'>*</span>}
                         </FormLabel>
                         <FormControl>
                           <Input type='text' placeholder='Enter your full name' {...field} />
@@ -208,7 +208,7 @@ export default function ResumeCandidatePage({ jobConfigs }) {
                       <FormItem className='flex flex-col'>
                         <FormLabel className='text-xs font-normal'>
                           Date of Birth
-                          {isFieldRequired(jobConfig, 'date_of_birth') && <span className='text-red-500'>*</span>}
+                          {isFieldRequired(jobConfigs, 'date_of_birth') && <span className='text-red-500'>*</span>}
                         </FormLabel>
                         <Popover>
                           <PopoverTrigger asChild>
@@ -235,7 +235,7 @@ export default function ResumeCandidatePage({ jobConfigs }) {
                       <FormItem className='space-y-3'>
                         <FormLabel className='text-xs font-normal'>
                           Pronoun (gender)
-                          {isFieldRequired(jobConfig, 'gender') && <span className='text-red-500'>*</span>}
+                          {isFieldRequired(jobConfigs, 'gender') && <span className='text-red-500'>*</span>}
                         </FormLabel>
                         <FormControl>
                           <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className='flex items-center space-x-2'>
@@ -265,7 +265,7 @@ export default function ResumeCandidatePage({ jobConfigs }) {
                       <FormItem>
                         <FormLabel className='text-xs font-normal'>
                           Domicile
-                          {isFieldRequired(jobConfig, 'domicile') && <span className='text-red-500'>*</span>}
+                          {isFieldRequired(jobConfigs, 'domicile') && <span className='text-red-500'>*</span>}
                         </FormLabel>
                         <Select onValueChange={field.onChange} value={field.value}>
                           <FormControl>
@@ -295,7 +295,7 @@ export default function ResumeCandidatePage({ jobConfigs }) {
                       <FormItem>
                         <FormLabel className='text-xs font-normal'>
                           Phone Number
-                          {isFieldRequired(jobConfig, 'phone_number') && <span className='text-red-500'>*</span>}
+                          {isFieldRequired(jobConfigs, 'phone_number') && <span className='text-red-500'>*</span>}
                         </FormLabel>
                         <InputGroup>
                           <FormControl>
@@ -327,7 +327,7 @@ export default function ResumeCandidatePage({ jobConfigs }) {
                       <FormItem>
                         <FormLabel className='text-xs font-normal'>
                           Email
-                          {isFieldRequired(jobConfig, 'email') && <span className='text-red-500'>*</span>}
+                          {isFieldRequired(jobConfigs, 'email') && <span className='text-red-500'>*</span>}
                         </FormLabel>
                         <FormControl>
                           <Input type='email' placeholder='Enter your email address' {...field} />
@@ -344,7 +344,7 @@ export default function ResumeCandidatePage({ jobConfigs }) {
                       <FormItem>
                         <FormLabel className='text-xs font-normal'>
                           Linkedin Link
-                          {isFieldRequired(jobConfig, 'linkedin_link') && <span className='text-red-500'>*</span>}
+                          {isFieldRequired(jobConfigs, 'linkedin_link') && <span className='text-red-500'>*</span>}
                         </FormLabel>
                         <FormControl>
                           <Input type='text' placeholder='https://linkedin.com/in/username' {...field} />
