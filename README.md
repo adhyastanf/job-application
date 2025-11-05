@@ -1,3 +1,5 @@
+##Please Pull The Repo to get new update
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
@@ -72,8 +74,9 @@ The main objective is to translate the **Figma design** into a **pixel-perfect, 
 - **API Data:** Mock JSON (simulated fetch API)  
 - **Fetch Data:** Axios
 - **Form Validation:** React Hook Form + Zod  
-- **Authentication:** Simple static auth (server-side credential check & middleware for protected pages)  
+- **Authentication:** Betterauth (server-side credential check & middleware for protected pages)  
 - **Deployment:** Vercel  
+- **Database for auth:** Supabase
 
 ---
 
