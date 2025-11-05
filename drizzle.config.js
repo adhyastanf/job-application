@@ -5,6 +5,6 @@ export default defineConfig({
   schema: 'src/lib/db/auth-schema.js',
   out: 'src/lib/db/migrations-folder',
   dbCredentials: {
-    url: 'postgresql://adhyasta:adhyastanf@localhost:5432/job_application',
+    url: 'postgresql://postgres.omedfxyhttizigezlmlb:adhyasta123@aws-1-ap-southeast-2.pooler.supabase.com:6543/postgres',
   },
 });

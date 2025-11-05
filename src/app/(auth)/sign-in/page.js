@@ -8,11 +8,12 @@ import { authClient } from '@/lib/client/auth-client';
 import { loginSchema } from '@/lib/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
-import { redirect, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
 export default function LoginPage() {
+  const navigate = useRouter();
   const form = useForm({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -22,11 +23,10 @@ export default function LoginPage() {
   });
 
   const onSubmit = async (data) => {
-    const { name, email, password } = data;
+    const { email, password } = data;
 
-    await authClient.signUp.email(
+    await authClient.signIn.email(
       {
-        name,
         email,
         password,
       },
@@ -36,7 +36,8 @@ export default function LoginPage() {
         },
         onSuccess: () => {
           toast.success('You has registered');
-          redirect('/admin/jobs');
+
+          navigate.push('/admin/jobs');
         },
         onError: (ctx) => {
           toast.error(ctx.error.message ?? 'Something went wrong.');
@@ -53,8 +54,8 @@ export default function LoginPage() {
             <CardTitle className=''>Bergabung dengan Rakamin</CardTitle>
             <CardDescription className='text-neutral'>
               Belum punya akun?{' '}
-              <Link href='/login' className='text-blue-500'>
-                Masuk
+              <Link href='/sign-up' className='text-blue-500'>
+                Daftar menggunakan email
               </Link>
             </CardDescription>
           </CardHeader>
@@ -92,7 +93,7 @@ export default function LoginPage() {
 
                 <div className='flex items-center justify-between'>
                   <Button type='submit' variant='secondary' className='w-full'>
-                    Daftar
+                    Masuk
                   </Button>
                 </div>
               </form>

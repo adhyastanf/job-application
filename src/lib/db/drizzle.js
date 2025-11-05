@@ -1,5 +1,3 @@
 import { drizzle } from 'drizzle-orm/node-postgres';
 
-export const db = drizzle('postgresql://adhyasta:adhyastanf@localhost:5432/job_application');
-
-// export const db = drizzle('mysql://haimotio_hai-motion:SW%40_%24c%29w_Wp%28@localhost:3306/haimotio_hai-motion');
+export const db = drizzle('postgresql://postgres.omedfxyhttizigezlmlb:adhyasta123@aws-1-ap-southeast-2.pooler.supabase.com:6543/postgres');
