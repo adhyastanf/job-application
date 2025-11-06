@@ -35,10 +35,6 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 ## Deploy on Vercel
 
-Berikut versi **Markdown README.md** profesional dari case study kamu — sudah diformat rapi dan siap commit langsung ke repo GitHub:
-
----
-
 ````markdown
 # 🧾 Case Study Report – Frontend Engineer Hiring Challenge 2025
 
