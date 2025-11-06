@@ -41,17 +41,6 @@ Berikut versi **Markdown README.md** profesional dari case study kamu — sudah 
 # 🧾 Case Study Report – Frontend Engineer Hiring Challenge 2025
 
 ## 1. Candidate Information
-**Full Name:** Adhyasta Naufal Faadhilah  
-**Email Address:** adhyasta.nf@gmail.com  
-**Deployed URL:** _to be shown in README GitHub repository_  
-
-**Admin Credential:**  
-- Username: `admin`  
-- Password: `admin`  
-
-**Applicant Credential:**  
-- Username: `user`  
-- Password: `user`  
 
 **GitHub Repository:**  
 
