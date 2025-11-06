@@ -1,4 +1,6 @@
-##Please Pull The Repo to get new update
+## Please Pull The Repo to get new update
+
+Change .env.example to .env to run the code
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
@@ -84,8 +86,7 @@ http://localhost:3000
 
 ### **Login Credentials**
 
-* **Admin →** `admin / admin`
-* **Candidate →** `user / user`
+* Can be use cause has integreted with supabase and use better auth
 
 ---
 
@@ -115,10 +116,10 @@ http://localhost:3000
 * Fields shown/hidden based on `required` property
 * Adaptive validation according to backend data definition
 
-### ✅ Profile Picture via Webcam Gesture (UI Ready)
+### ✅ Profile Picture via Webcam Gesture
 
 * Webcam component prepared with placeholder for gesture capture
-* WebGL/HandPose integration partially implemented (mock UI ready)
+* WebGL/HandPose integration partially implemented
 
 ### ✅ Responsive & Pixel-Perfect Design
 
@@ -163,8 +164,6 @@ http://localhost:3000
 
 ## 9. Future Improvements
 
-* Implement full CRUD operations using **Supabase** or **Firebase** for persistent data.
-* Integrate gesture-based photo capture with **Tensorflow/MediaPipe**.
 * Add **unit tests** using Jest and Playwright for UI validation.
 * Refactor component structure and hooks for improved modularization and maintainability.
 
