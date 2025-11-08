@@ -6,7 +6,7 @@ import { Plus } from 'lucide-react';
 export default function CommandComponent({ placeholder = 'Type a command or search...', list = [], className = 'rounded-lg border shadow-md md:min-w-[450px]', onSelect }) {
   return (
     <Command>
-      <CommandInput placeholder='Type a command or search...' />
+      <CommandInput placeholder={placeholder} />
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
         <CommandGroup>
@@ -14,7 +14,7 @@ export default function CommandComponent({ placeholder = 'Type a command or sear
             return (
               <CommandItem key={idx} onSelect={() => onSelect(item)} className='flex items-center justify-between'>
                 <div className='flex items-center space-x-2'>
-                  <Plus />
+                  <img src={item.flag} className='w-4 rounded-full'  />
                   <p>{item.name}</p>
                 </div>
                 <p>{item.numberCode}</p>

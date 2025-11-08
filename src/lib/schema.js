@@ -11,18 +11,6 @@ export const jobSchema = z
       .refine((val) => !isNaN(Number(val)) && Number(val) > 0, {
         message: 'Must be a valid positive number',
       }),
-    minSalary: z
-      .string()
-      .nonempty('Minimum salary is required')
-      .refine((val) => !isNaN(Number(val)) && Number(val) > 0, {
-        message: 'Must be a valid positive number',
-      }),
-    maxSalary: z
-      .string()
-      .nonempty('Maximum salary is required')
-      .refine((val) => !isNaN(Number(val)) && Number(val) > 0, {
-        message: 'Must be a valid positive number',
-      }),
     fullname: z.string().nonempty('Fullname is required'),
     profile: z.string().nonempty('Profile is required'),
     gender: z.string().nonempty('Gender is required'),
@@ -32,17 +20,6 @@ export const jobSchema = z
     phone: z.string().nonempty('Phone Number is required'),
     birth: z.string().nonempty('Date of Birth is required'),
   })
-  .refine(
-    (data) => {
-      const min = Number(data.minSalary);
-      const max = Number(data.maxSalary);
-      return !isNaN(min) && !isNaN(max) && max >= min;
-    },
-    {
-      message: 'Maximum salary must be greater than or equal to minimum salary',
-      path: ['maxSalary'],
-    }
-  );
 
 export const resumeSchema = z.object({
   photo_profile: z.any().refine((val) => val !== null && val !== undefined, {
@@ -110,7 +87,7 @@ export function generateResumeSchema(config) {
         break;
 
       case 'date_of_birth':
-        shape[key] = required ? z.string().min(1, { message: 'Date of birth is required' }) : z.string().optional();
+        shape[key] = required ? z.any().min(1, { message: 'Date of birth is required' }) : z.any().optional();
         break;
 
       default:
@@ -122,6 +99,6 @@ export function generateResumeSchema(config) {
 }
 
 export const loginSchema = z.object({
-  email: z.string().min(1, { message: 'Email wajib diisi' }).email({ message: 'Format email tidak valid' }),
+  email: z.string().nonempty('Email wajib diisi').email({ message: 'Alamat email tidak valid' }),
   password: z.string().min(8, { message: 'Password minimal 8 karakter' }),
 });

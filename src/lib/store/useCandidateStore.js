@@ -29,9 +29,7 @@ export const useCandidateStore = create((set) => ({
     set({ loading: true });
     try {
       const res = await axios.get('/mock/candidate.json');
-      const raw = res.data?.data || [];
-      const transformed = transformCandidates(raw);
-      set({ candidates: transformed, loading: false });
+      set({ candidates: res.data, loading: false });
     } catch (error) {
       console.error('Failed to fetch candidates:', error);
       set({ loading: false });

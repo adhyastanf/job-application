@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { authClient } from '@/lib/client/auth-client';
 import { loginSchema } from '@/lib/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
@@ -47,59 +48,64 @@ export default function LoginPage() {
   };
 
   return (
-    <div className='flex items-center justify-center'>
-      <div className='w-[500px]'>
-        <Card className='py-10 gap-4'>
-          <CardHeader className='px-10'>
-            <CardTitle className=''>Bergabung dengan Rakamin</CardTitle>
-            <CardDescription className='text-neutral'>
-              Belum punya akun?{' '}
-              <Link href='/sign-up' className='text-blue-500'>
-                Daftar menggunakan email
-              </Link>
-            </CardDescription>
-          </CardHeader>
+    <div>
+      <div className='flex items-center justify-center'>
+        <div className='w-[500px]'>
+          <div className='relative aspect-3/1 max-w-[145px] mb-6'>
+            <Image src='/Logo-Rakamin.png' alt='logo-rakamin' fill className='object-contain' />
+          </div>
+          <Card className='py-10 gap-4'>
+            <CardHeader className='px-10'>
+              <CardTitle className=''>Bergabung dengan Rakamin</CardTitle>
+              <CardDescription className='text-neutral'>
+                Belum punya akun?{' '}
+                <Link href='/sign-up' className='text-blue-500'>
+                  Daftar menggunakan email
+                </Link>
+              </CardDescription>
+            </CardHeader>
 
-          <CardContent className='px-10'>
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
-                <FormField
-                  control={form.control}
-                  name='email'
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className=''>Alamat Email</FormLabel>
-                      <FormControl>
-                        <Input type='email' placeholder='Enter your email address' {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+            <CardContent className='px-10'>
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
+                  <FormField
+                    control={form.control}
+                    name='email'
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className=''>Alamat Email</FormLabel>
+                        <FormControl>
+                          <Input type='email' placeholder='Enter your email address' {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
 
-                <FormField
-                  control={form.control}
-                  name='password'
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className=''>Kata Sandi</FormLabel>
-                      <FormControl>
-                        <Input type='password' placeholder='Enter your password' {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                  <FormField
+                    control={form.control}
+                    name='password'
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className=''>Kata Sandi</FormLabel>
+                        <FormControl>
+                          <Input type='password' placeholder='Enter your password' {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
 
-                <div className='flex items-center justify-between'>
-                  <Button type='submit' variant='secondary' className='w-full'>
-                    Masuk
-                  </Button>
-                </div>
-              </form>
-            </Form>
-          </CardContent>
-        </Card>
+                  <div className='flex items-center justify-between'>
+                    <Button type='submit' variant='secondary' className='w-full'>
+                      Masuk
+                    </Button>
+                  </div>
+                </form>
+              </Form>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </div>
   );

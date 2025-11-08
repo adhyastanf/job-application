@@ -18,58 +18,58 @@
       }
     },
     {
-      "id": "job_20251001_0001",
-      "slug": "frontend-developer",
-      "title": "Frontend Developer",
+      "id": "job_20251001_0002",
+      "slug": "frontend-engineer",
+      "title": "Frontend Engineer",
       "status": "active",
       "salary_range": {
-        "min": 7000000,
-        "max": 8000000,
+        "min": 7500000,
+        "max": 8500000,
         "currency": "IDR",
-        "display_text": "Rp7.000.000 - Rp8.000.000"
+        "display_text": "Rp7.500.000 - Rp8.500.000"
       },
       "list_card": {
         "badge": "Active",
-        "started_on_text": "Started on 1 Oct 2025",
+        "started_on_text": "Started on 3 Oct 2025",
         "cta": "Manage Job"
       }
     },
     {
-      "id": "job_20251001_0001",
-      "slug": "frontend-developer",
-      "title": "Frontend Developer",
+      "id": "job_20251001_0003",
+      "slug": "ui-developer",
+      "title": "UI Developer",
       "status": "active",
       "salary_range": {
         "min": 7000000,
-        "max": 8000000,
+        "max": 9000000,
         "currency": "IDR",
-        "display_text": "Rp7.000.000 - Rp8.000.000"
+        "display_text": "Rp7.000.000 - Rp9.000.000"
       },
       "list_card": {
         "badge": "Active",
-        "started_on_text": "Started on 1 Oct 2025",
+        "started_on_text": "Started on 4 Oct 2025",
         "cta": "Manage Job"
       }
     },
     {
-      "id": "job_20251001_0001",
-      "slug": "frontend-developer",
-      "title": "Frontend Developer",
+      "id": "job_20251001_0004",
+      "slug": "react-developer",
+      "title": "React Developer",
       "status": "active",
       "salary_range": {
-        "min": 7000000,
-        "max": 8000000,
+        "min": 8000000,
+        "max": 9500000,
         "currency": "IDR",
-        "display_text": "Rp7.000.000 - Rp8.000.000"
+        "display_text": "Rp8.000.000 - Rp9.500.000"
       },
       "list_card": {
         "badge": "Active",
-        "started_on_text": "Started on 1 Oct 2025",
+        "started_on_text": "Started on 6 Oct 2025",
         "cta": "Manage Job"
       }
     },
     {
-      "id": "job_20251001_000",
+      "id": "job_20251001_0005",
       "slug": "backend-developer",
       "title": "Backend Developer",
       "status": "inactive",
@@ -86,7 +86,7 @@
       }
     },
     {
-      "id": "job_20251001_0004",
+      "id": "job_20251001_0006",
       "slug": "fullstack-developer",
       "title": "Fullstack Developer",
       "status": "draft",

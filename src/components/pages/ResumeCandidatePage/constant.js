@@ -1,36 +1,36 @@
 export const listCountry = [
   {
-    flag: 'id',
+    flag: 'http://purecatamphetamine.github.io/country-flag-icons/1x1/ID.svg',
     name: 'Indonesia',
     numberCode: '+62',
   },
   {
-    flag: 'oman',
+    flag: 'http://purecatamphetamine.github.io/country-flag-icons/1x1/OM.svg',
     name: 'Oman',
     numberCode: '+62',
   },
   {
-    flag: 'palestine',
+    flag: 'http://purecatamphetamine.github.io/country-flag-icons/1x1/PS.svg',
     name: 'Palestine',
     numberCode: '+62',
   },
   {
-    flag: 'paraguay',
+    flag: 'http://purecatamphetamine.github.io/country-flag-icons/1x1/PE.svg',
     name: 'Peru',
     numberCode: '+62',
   },
   {
-    flag: 'poland',
+    flag: 'http://purecatamphetamine.github.io/country-flag-icons/1x1/PL.svg',
     name: 'Poland',
     numberCode: '+62',
   },
   {
-    flag: 'portugal',
+    flag: 'http://purecatamphetamine.github.io/country-flag-icons/1x1/PT.svg',
     name: 'Portugal',
     numberCode: '+62',
   },
   {
-    flag: 'puerto',
+    flag: 'http://purecatamphetamine.github.io/country-flag-icons/1x1/PR.svg',
     name: 'Puerto Rico',
     numberCode: '+62',
   },

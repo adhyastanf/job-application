@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { authClient } from '@/lib/client/auth-client';
 import { loginSchema } from '@/lib/schema';
 import { zodResolver } from '@hookform/resolvers/zod';
+import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { useForm } from 'react-hook-form';
@@ -48,6 +49,9 @@ export default function LoginPage() {
   return (
     <div className='flex items-center justify-center'>
       <div className='w-[500px]'>
+        <div className='relative aspect-3/1 max-w-[145px] mb-6'>
+          <Image src='/Logo-Rakamin.png' alt='logo-rakamin' fill className='object-contain' />
+        </div>
         <Card className='py-10 gap-4'>
           <CardHeader className='px-10'>
             <CardTitle className=''>Bergabung dengan Rakamin</CardTitle>

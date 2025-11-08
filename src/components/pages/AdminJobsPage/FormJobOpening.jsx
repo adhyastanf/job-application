@@ -10,11 +10,12 @@ import { Textarea } from '@/components/ui/textarea';
 import { cn } from '@/lib/utils';
 import * as RadioGroupPrimitive from '@radix-ui/react-radio-group';
 import { fields } from './constant';
+import { LabelForm } from '@/lib/format';
 
-export default function FormJobOpening({ form, onSubmit }) {
+export default function FormJobOpening({ form }) {
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
+      <form>
         <div className='space-y-4 py-6'>
           <FormField
             control={form.control}
@@ -22,7 +23,7 @@ export default function FormJobOpening({ form, onSubmit }) {
             render={({ field }) => (
               <FormItem>
                 <FormLabel className='font-normal'>
-                  Job Name<span className='text-red-500'>*</span>
+                  <LabelForm label='Job Name' required />
                 </FormLabel>
                 <FormControl>
                   <Input type='text' placeholder='Ex. Front End Developer' {...field} />
@@ -39,7 +40,7 @@ export default function FormJobOpening({ form, onSubmit }) {
             render={({ field }) => (
               <FormItem>
                 <FormLabel className='font-normal'>
-                  Job Type<span className='text-red-500'>*</span>
+                  <LabelForm label='Job Type' required />
                 </FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value} className='w-full'>
                   <FormControl>
@@ -68,7 +69,7 @@ export default function FormJobOpening({ form, onSubmit }) {
             render={({ field }) => (
               <FormItem>
                 <FormLabel className='font-normal'>
-                  Job Description<span className='text-red-500'>*</span>
+                  <LabelForm label='Job Description' required />
                 </FormLabel>
                 <FormControl>
                   <Textarea placeholder='Describe the job position here...' {...field} />
@@ -85,7 +86,7 @@ export default function FormJobOpening({ form, onSubmit }) {
             render={({ field }) => (
               <FormItem>
                 <FormLabel className='font-normal'>
-                  Number of Candidates<span className='text-red-500'>*</span>
+                  <LabelForm label='Number of Candidates' required />
                 </FormLabel>
                 <FormControl>
                   <Input type='number' placeholder='Ex. 2' {...field} />
@@ -105,15 +106,24 @@ export default function FormJobOpening({ form, onSubmit }) {
               render={({ field }) => (
                 <FormItem className='flex-1'>
                   <FormLabel className='font-normal'>
-                    Minimum Estimated Salary <span className='text-red-500'>*</span>
+                    <LabelForm label='Estimated Salary' />
                   </FormLabel>
                   <InputGroup>
                     <InputGroupAddon>
-                      <FormControl>
-                        <InputGroupText className='font-bold text-neutral/90'>Rp</InputGroupText>
-                      </FormControl>
+                      <InputGroupText className='font-bold text-neutral/90'>Rp</InputGroupText>
                     </InputGroupAddon>
-                    <InputGroupInput placeholder='7.000.000' {...field} />
+                    <FormControl>
+                      <InputGroupInput
+                        {...field}
+                        value={field.value !== undefined && field.value !== '' ? Number(field.value).toLocaleString('id-ID') : ''}
+                        onChange={(e) => {
+                          const numericValue = e.target.value.replace(/\D/g, ''); 
+                          field.onChange(numericValue === '' ? '' : numericValue);
+                        }}
+                        inputMode='numeric'
+                        placeholder='7.000.000'
+                      />
+                    </FormControl>
                   </InputGroup>
                   <FormMessage />
                 </FormItem>
@@ -127,15 +137,24 @@ export default function FormJobOpening({ form, onSubmit }) {
               render={({ field }) => (
                 <FormItem className='flex-1'>
                   <FormLabel className='font-normal'>
-                    Maximum Estimated Salary <span className='text-red-500'>*</span>
+                    <LabelForm label='Maximum Estimated Salary' />
                   </FormLabel>
                   <InputGroup>
                     <InputGroupAddon>
-                      <FormControl>
-                        <InputGroupText className='font-bold text-neutral/90'>Rp</InputGroupText>
-                      </FormControl>
+                      <InputGroupText className='font-bold text-neutral/90'>Rp</InputGroupText>
                     </InputGroupAddon>
-                    <InputGroupInput placeholder='7.000.000' {...field} />
+                    <FormControl>
+                      <InputGroupInput
+                        {...field}
+                        value={field.value !== undefined && field.value !== '' ? Number(field.value).toLocaleString('id-ID') : ''}
+                        onChange={(e) => {
+                          const numericValue = e.target.value.replace(/\D/g, '');
+                          field.onChange(numericValue === '' ? '' : numericValue); 
+                        }}
+                        inputMode='numeric'
+                        placeholder='7.000.000'
+                      />
+                    </FormControl>
                   </InputGroup>
                   <FormMessage />
                 </FormItem>

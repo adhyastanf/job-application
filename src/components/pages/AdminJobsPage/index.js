@@ -5,11 +5,13 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group';
+import { Skeleton } from '@/components/ui/skeleton';
 import { useJobStore } from '@/lib/store/useJobStore';
 import { Search } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import ModalJobOpening from './ModalJobOpening';
+import { EmptyStateListIcon } from '@/components/assets/EmptyStateList';
 
 export default function AdminJobsPage() {
   const { jobs, loading, fetchJobs } = useJobStore((state) => state);
@@ -26,7 +28,6 @@ export default function AdminJobsPage() {
   return (
     <PageContainer scrollable={true}>
       <div className='flex flex-1 flex-col space-y-2'>
-        {/* Tambahkan flex-col ke flex-row agar responsif */}
         <div className='flex flex-col lg:flex-row gap-4'>
           <section className='flex-1 space-y-4'>
             <InputGroup>
@@ -38,7 +39,6 @@ export default function AdminJobsPage() {
             <JobList data={filterData} loading={loading} />
           </section>
 
-          {/* Tambah class responsif agar pindah ke bawah di layar kecil */}
           <div className='lg:w-auto w-full'>
             <CardSidebar />
           </div>
@@ -54,14 +54,18 @@ function JobList({ data, loading }) {
   const isLoading = loading;
 
   if (isLoading) {
-    return <div>loading...</div>;
+    return (
+      <div className='space-y-4'>
+        {Array.from({ length: 5 }).map((i, idx) => (
+          <SkeletonJobCard key={idx} />
+        ))}
+      </div>
+    );
   }
 
   if (isEmpty) {
     return (
-      <EmptyState>
-        <p className='text-lg font-semibold'>No job openings available</p>
-        <p className='text-gray-500'>Create a job opening now and start the candidate process.</p>
+      <EmptyState icon={<EmptyStateListIcon />} title='No job openings available' description='Create a job opening now and start the candidate process.'>
         <Button variant='secondary' onClick={() => setOpen(true)}>
           Create a new job
         </Button>
@@ -76,9 +80,27 @@ function JobList({ data, loading }) {
         const { id, title, list_card, salary_range, status, slug } = job;
         const { display_text } = salary_range;
         const { cta, started_on_text } = list_card;
-        return <CardJob id={id} title={title} display_text={display_text} status={status} cta={cta} slug={slug} started_on_text={started_on_text} key={idx} />;
+        return <CardJob key={idx} id={id} title={title} display_text={display_text} status={status} cta={cta} slug={slug} started_on_text={started_on_text} />;
       })}
     </div>
+  );
+}
+
+function SkeletonJobCard() {
+  return (
+    <Card className='gap-3 rounded-lg p-4'>
+      <CardHeader className='flex flex-row gap-2 items-center'>
+        <Skeleton className='h-6 w-20 rounded-md' />
+        <Skeleton className='h-6 w-40 rounded-md' />
+      </CardHeader>
+      <CardContent className='flex flex-col md:flex-row justify-between gap-4'>
+        <div className='space-y-2'>
+          <Skeleton className='h-6 w-40 rounded-md' />
+          <Skeleton className='h-5 w-32 rounded-md' />
+        </div>
+        <Skeleton className='h-10 w-32 rounded-md self-start md:self-end' />
+      </CardContent>
+    </Card>
   );
 }
 
@@ -96,27 +118,25 @@ function CardJob({ id, slug, title, display_text, cta, started_on_text, status }
   }
 
   return (
-    <>
-      <Card className='gap-3 rounded-lg'>
-        <CardHeader>
-          <div className='flex flex-wrap gap-2'>
-            {badgeComponent(status)}
-            <Badge variant='outline' className='border border-neutral/10 rounded-sm px-4 py-2'>
-              {started_on_text}
-            </Badge>
-          </div>
-        </CardHeader>
-        <CardContent className='flex flex-col md:flex-row justify-between gap-4'>
-          <div>
-            <p className='font-bold text-xl'>{title}</p>
-            <p>{display_text}</p>
-          </div>
-          <Link href={`/admin/jobs/${slug}-${id}`}>
-            <Button className='self-start md:self-end'>{cta}</Button>
-          </Link>
-        </CardContent>
-      </Card>
-    </>
+    <Card className='gap-3 rounded-lg'>
+      <CardHeader>
+        <div className='flex flex-wrap gap-2'>
+          {badgeComponent(status)}
+          <Badge variant='outline' className='border border-neutral/10 rounded-sm px-4 py-2'>
+            {started_on_text}
+          </Badge>
+        </div>
+      </CardHeader>
+      <CardContent className='flex flex-col md:flex-row justify-between gap-4'>
+        <div>
+          <p className='font-bold text-xl'>{title}</p>
+          <p>{display_text}</p>
+        </div>
+        <Link href={`/admin/jobs/${slug}-${id}`}>
+          <Button className='self-start md:self-end'>{cta}</Button>
+        </Link>
+      </CardContent>
+    </Card>
   );
 }
 

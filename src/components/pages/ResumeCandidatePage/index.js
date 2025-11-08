@@ -19,14 +19,13 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Separator } from '@/components/ui/separator';
 import { generateResumeSchema } from '@/lib/schema';
-import { useJobStore } from '@/lib/store/useJobStore';
 import { cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { format } from 'date-fns/format';
 import { ArrowLeft, CalendarIcon, ChevronDown, ChevronRight, Upload } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { domicileOptions, listCountry } from './constant';
 
@@ -36,7 +35,6 @@ export default function ResumeCandidatePage({ jobConfigs }) {
   const [capturedPhoto, setCapturedPhoto] = useState(false);
   const [selected, setSelected] = useState(listCountry[0]);
   const [open, setOpen] = useState(false);
-  const { jobConfig, loadingConfig, fetchJobConfig } = useJobStore((state) => state);
 
   const resumeSchema = useMemo(() => {
     if (!jobConfigs) return null;
@@ -130,7 +128,7 @@ export default function ResumeCandidatePage({ jobConfigs }) {
                       <FormItem>
                         <FormLabel className='text-xs font-bold block space-y-2'>
                           <div>Photo Profile</div>
-                          <Avatar className='rounded-sm w-36 h-36'>
+                          <Avatar className='rounded-sm w-36 h-36 object-cover'>
                             <AvatarImage src={captured || 'https://github.com/shadcn.png'} />
                             <AvatarFallback>CN</AvatarFallback>
                           </Avatar>
@@ -304,8 +302,8 @@ export default function ResumeCandidatePage({ jobConfigs }) {
                           <InputGroupAddon>
                             <PopoverComponent
                               trigger={
-                                <div className='flex items-center cursor-pointer'>
-                                  {selected.flag}
+                                <div className='flex items-center justify-center cursor-pointer'>
+                                  <img src={selected.flag} alt='flag' className='rounded-full w-4' />
                                   <ChevronDown size={20} />
                                 </div>
                               }

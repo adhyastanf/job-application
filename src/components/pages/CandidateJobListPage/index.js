@@ -115,11 +115,6 @@ function CardDescription({ data }) {
       <CardContent className='flex-1 overflow-hidden'>
         <ScrollArea className='h-full '>
           <ul className='list-disc list-outside pl-6 space-y-2'>
-            <li>{jobDesc}sfdfsfsd</li>
-            <li>{jobDesc}sfdfsfsd</li>
-            <li>{jobDesc}sfdfsfsd</li>
-            <li>{jobDesc}sfdfsfsd</li>
-            <li>{jobDesc}sfdfsfsd</li>
             <li>Additional job description item 1</li>
             <li>Additional job description item 2</li>
             <li>Additional job description item 3</li>

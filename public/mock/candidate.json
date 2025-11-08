@@ -12,69 +12,124 @@
       ]
     },
     {
-      "id": "cand_20251008_0001",
+      "id": "cand_20251008_0002",
       "attributes": [
-        { "key": "full_name", "label": "Full Name", "value": "Nadia Putri", "order": 1 },
-        { "key": "email", "label": "Email", "value": "nadia.putri@example.com", "order": 2 },
-        { "key": "phone", "label": "Phone", "value": "+62 812-1234-5678", "order": 3 },
-        { "key": "domicile", "label": "Domicile", "value": "Jakarta", "order": 4 },
-        { "key": "gender", "label": "Gender", "value": "Female", "order": 5 },
-        { "key": "linkedin_link", "label": "LinkedIn", "value": "https://linkedin.com/in/nadiaputri", "order": 6 }
+        { "key": "full_name", "label": "Full Name", "value": "Rizky Hidayat", "order": 1 },
+        { "key": "email", "label": "Email", "value": "rizky.hidayat@example.com", "order": 2 },
+        { "key": "phone", "label": "Phone", "value": "+62 813-9876-5432", "order": 3 },
+        { "key": "domicile", "label": "Domicile", "value": "Bandung", "order": 4 },
+        { "key": "gender", "label": "Gender", "value": "Male", "order": 5 },
+        { "key": "linkedin_link", "label": "LinkedIn", "value": "https://linkedin.com/in/rizkyhidayat", "order": 6 }
       ]
     },
     {
-      "id": "cand_20251008_0001",
+      "id": "cand_20251008_0003",
       "attributes": [
-        { "key": "full_name", "label": "Full Name", "value": "Nadia Putri", "order": 1 },
-        { "key": "email", "label": "Email", "value": "nadia.putri@example.com", "order": 2 },
-        { "key": "phone", "label": "Phone", "value": "+62 812-1234-5678", "order": 3 },
-        { "key": "domicile", "label": "Domicile", "value": "Jakarta", "order": 4 },
+        { "key": "full_name", "label": "Full Name", "value": "Clara Wijaya", "order": 1 },
+        { "key": "email", "label": "Email", "value": "clara.wijaya@example.com", "order": 2 },
+        { "key": "phone", "label": "Phone", "value": "+62 822-3344-1122", "order": 3 },
+        { "key": "domicile", "label": "Domicile", "value": "Surabaya", "order": 4 },
         { "key": "gender", "label": "Gender", "value": "Female", "order": 5 },
-        { "key": "linkedin_link", "label": "LinkedIn", "value": "https://linkedin.com/in/nadiaputri", "order": 6 }
+        { "key": "linkedin_link", "label": "LinkedIn", "value": "https://linkedin.com/in/clarawijaya", "order": 6 }
       ]
     },
     {
-      "id": "cand_20251008_0001",
+      "id": "cand_20251008_0004",
       "attributes": [
-        { "key": "full_name", "label": "Full Name", "value": "Nadia Putri", "order": 1 },
-        { "key": "email", "label": "Email", "value": "nadia.putri@example.com", "order": 2 },
-        { "key": "phone", "label": "Phone", "value": "+62 812-1234-5678", "order": 3 },
-        { "key": "domicile", "label": "Domicile", "value": "Jakarta", "order": 4 },
-        { "key": "gender", "label": "Gender", "value": "Female", "order": 5 },
-        { "key": "linkedin_link", "label": "LinkedIn", "value": "https://linkedin.com/in/nadiaputri", "order": 6 }
+        { "key": "full_name", "label": "Full Name", "value": "Ahmad Fauzan", "order": 1 },
+        { "key": "email", "label": "Email", "value": "ahmad.fauzan@example.com", "order": 2 },
+        { "key": "phone", "label": "Phone", "value": "+62 819-2233-4455", "order": 3 },
+        { "key": "domicile", "label": "Domicile", "value": "Yogyakarta", "order": 4 },
+        { "key": "gender", "label": "Gender", "value": "Male", "order": 5 },
+        { "key": "linkedin_link", "label": "LinkedIn", "value": "https://linkedin.com/in/ahmadfauzan", "order": 6 }
       ]
     },
     {
-      "id": "cand_20251008_0001",
+      "id": "cand_20251008_0005",
       "attributes": [
-        { "key": "full_name", "label": "Full Name", "value": "Nadia Putri", "order": 1 },
-        { "key": "email", "label": "Email", "value": "nadia.putri@example.com", "order": 2 },
-        { "key": "phone", "label": "Phone", "value": "+62 812-1234-5678", "order": 3 },
-        { "key": "domicile", "label": "Domicile", "value": "Jakarta", "order": 4 },
+        { "key": "full_name", "label": "Full Name", "value": "Sinta Lestari", "order": 1 },
+        { "key": "email", "label": "Email", "value": "sinta.lestari@example.com", "order": 2 },
+        { "key": "phone", "label": "Phone", "value": "+62 815-6677-8899", "order": 3 },
+        { "key": "domicile", "label": "Domicile", "value": "Semarang", "order": 4 },
         { "key": "gender", "label": "Gender", "value": "Female", "order": 5 },
-        { "key": "linkedin_link", "label": "LinkedIn", "value": "https://linkedin.com/in/nadiaputri", "order": 6 }
+        { "key": "linkedin_link", "label": "LinkedIn", "value": "https://linkedin.com/in/sintalestari", "order": 6 }
       ]
     },
     {
-      "id": "cand_20251008_0001",
+      "id": "cand_20251008_0006",
       "attributes": [
-        { "key": "full_name", "label": "Full Name", "value": "Nadia Putri", "order": 1 },
-        { "key": "email", "label": "Email", "value": "nadia.putri@example.com", "order": 2 },
-        { "key": "phone", "label": "Phone", "value": "+62 812-1234-5678", "order": 3 },
-        { "key": "domicile", "label": "Domicile", "value": "Jakarta", "order": 4 },
-        { "key": "gender", "label": "Gender", "value": "Female", "order": 5 },
-        { "key": "linkedin_link", "label": "LinkedIn", "value": "https://linkedin.com/in/nadiaputri", "order": 6 }
+        { "key": "full_name", "label": "Full Name", "value": "Bayu Saputra", "order": 1 },
+        { "key": "email", "label": "Email", "value": "bayu.saputra@example.com", "order": 2 },
+        { "key": "phone", "label": "Phone", "value": "+62 812-7788-9900", "order": 3 },
+        { "key": "domicile", "label": "Domicile", "value": "Denpasar", "order": 4 },
+        { "key": "gender", "label": "Gender", "value": "Male", "order": 5 },
+        { "key": "linkedin_link", "label": "LinkedIn", "value": "https://linkedin.com/in/bayusaputra", "order": 6 }
       ]
     },
     {
-      "id": "cand_20251008_0001",
+      "id": "cand_20251008_0007",
       "attributes": [
-        { "key": "full_name", "label": "Full Name", "value": "Nadia Putri", "order": 1 },
-        { "key": "email", "label": "Email", "value": "nadia.putri@example.com", "order": 2 },
-        { "key": "phone", "label": "Phone", "value": "+62 812-1234-5678", "order": 3 },
-        { "key": "domicile", "label": "Domicile", "value": "Jakarta", "order": 4 },
+        { "key": "full_name", "label": "Full Name", "value": "Laila Rahma", "order": 1 },
+        { "key": "email", "label": "Email", "value": "laila.rahma@example.com", "order": 2 },
+        { "key": "phone", "label": "Phone", "value": "+62 816-2233-6677", "order": 3 },
+        { "key": "domicile", "label": "Domicile", "value": "Medan", "order": 4 },
         { "key": "gender", "label": "Gender", "value": "Female", "order": 5 },
-        { "key": "linkedin_link", "label": "LinkedIn", "value": "https://linkedin.com/in/nadiaputri", "order": 6 }
+        { "key": "linkedin_link", "label": "LinkedIn", "value": "https://linkedin.com/in/lailarahma", "order": 6 }
+      ]
+    },
+    {
+      "id": "cand_20251008_0007",
+      "attributes": [
+        { "key": "full_name", "label": "Full Name", "value": "Laila Rahma", "order": 1 },
+        { "key": "email", "label": "Email", "value": "laila.rahma@example.com", "order": 2 },
+        { "key": "phone", "label": "Phone", "value": "+62 816-2233-6677", "order": 3 },
+        { "key": "domicile", "label": "Domicile", "value": "Medan", "order": 4 },
+        { "key": "gender", "label": "Gender", "value": "Female", "order": 5 },
+        { "key": "linkedin_link", "label": "LinkedIn", "value": "https://linkedin.com/in/lailarahma", "order": 6 }
+      ]
+    },
+    {
+      "id": "cand_20251008_0007",
+      "attributes": [
+        { "key": "full_name", "label": "Full Name", "value": "Laila Rahma", "order": 1 },
+        { "key": "email", "label": "Email", "value": "laila.rahma@example.com", "order": 2 },
+        { "key": "phone", "label": "Phone", "value": "+62 816-2233-6677", "order": 3 },
+        { "key": "domicile", "label": "Domicile", "value": "Medan", "order": 4 },
+        { "key": "gender", "label": "Gender", "value": "Female", "order": 5 },
+        { "key": "linkedin_link", "label": "LinkedIn", "value": "https://linkedin.com/in/lailarahma", "order": 6 }
+      ]
+    },
+    {
+      "id": "cand_20251008_0007",
+      "attributes": [
+        { "key": "full_name", "label": "Full Name", "value": "Laila Rahma", "order": 1 },
+        { "key": "email", "label": "Email", "value": "laila.rahma@example.com", "order": 2 },
+        { "key": "phone", "label": "Phone", "value": "+62 816-2233-6677", "order": 3 },
+        { "key": "domicile", "label": "Domicile", "value": "Medan", "order": 4 },
+        { "key": "gender", "label": "Gender", "value": "Female", "order": 5 },
+        { "key": "linkedin_link", "label": "LinkedIn", "value": "https://linkedin.com/in/lailarahma", "order": 6 }
+      ]
+    },
+    {
+      "id": "cand_20251008_0007",
+      "attributes": [
+        { "key": "full_name", "label": "Full Name", "value": "Laila Rahma", "order": 1 },
+        { "key": "email", "label": "Email", "value": "laila.rahma@example.com", "order": 2 },
+        { "key": "phone", "label": "Phone", "value": "+62 816-2233-6677", "order": 3 },
+        { "key": "domicile", "label": "Domicile", "value": "Medan", "order": 4 },
+        { "key": "gender", "label": "Gender", "value": "Female", "order": 5 },
+        { "key": "linkedin_link", "label": "LinkedIn", "value": "https://linkedin.com/in/lailarahma", "order": 6 }
+      ]
+    },
+    {
+      "id": "cand_20251008_0007",
+      "attributes": [
+        { "key": "full_name", "label": "Full Name", "value": "Laila Rahma", "order": 1 },
+        { "key": "email", "label": "Email", "value": "laila.rahma@example.com", "order": 2 },
+        { "key": "phone", "label": "Phone", "value": "+62 816-2233-6677", "order": 3 },
+        { "key": "domicile", "label": "Domicile", "value": "Medan", "order": 4 },
+        { "key": "gender", "label": "Gender", "value": "Female", "order": 5 },
+        { "key": "linkedin_link", "label": "LinkedIn", "value": "https://linkedin.com/in/lailarahma", "order": 6 }
       ]
     }
   ]

@@ -19,10 +19,9 @@ export async function middleware(request) {
 
 export const config = {
   matcher: [
-    // hanya jalankan middleware untuk /dashboard,
-    // tapi skip file statis biar ga error
-    '/applicant/:path*',
     '/admin/:path*',
-    '/((?!_next/static|_next/image|favicon.ico|sign-in|sign-up|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    '/applicant/:path*',
+    '/((?!api|_next/|favicon.ico|sign-in|sign-up|.*\\.(?:png|jpg|jpeg|svg|gif|webp)$).*)',
   ],
 };
+
