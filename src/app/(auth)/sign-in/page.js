@@ -48,7 +48,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div>
+    <div className='bg-red-200 h-screen flex items-center justify-center'>
       <div className='flex items-center justify-center'>
         <div className='w-[500px]'>
           <div className='relative aspect-3/1 max-w-[145px] mb-6'>
