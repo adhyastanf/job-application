@@ -1,3 +1,7 @@
+## Please Pull The Repo to get new update
+
+Change .env.example to .env to run the code
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
@@ -31,25 +35,10 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 ## Deploy on Vercel
 
-Berikut versi **Markdown README.md** profesional dari case study kamu — sudah diformat rapi dan siap commit langsung ke repo GitHub:
-
----
-
 ````markdown
 # 🧾 Case Study Report – Frontend Engineer Hiring Challenge 2025
 
 ## 1. Candidate Information
-**Full Name:** Adhyasta Naufal Faadhilah  
-**Email Address:** adhyasta.nf@gmail.com  
-**Deployed URL:** _to be shown in README GitHub repository_  
-
-**Admin Credential:**  
-- Username: `admin`  
-- Password: `admin`  
-
-**Applicant Credential:**  
-- Username: `user`  
-- Password: `user`  
 
 **GitHub Repository:**  
 
@@ -72,8 +61,9 @@ The main objective is to translate the **Figma design** into a **pixel-perfect, 
 - **API Data:** Mock JSON (simulated fetch API)  
 - **Fetch Data:** Axios
 - **Form Validation:** React Hook Form + Zod  
-- **Authentication:** Simple static auth (server-side credential check & middleware for protected pages)  
+- **Authentication:** Betterauth (server-side credential check & middleware for protected pages)  
 - **Deployment:** Vercel  
+- **Database for auth:** Supabase
 
 ---
 
@@ -92,8 +82,7 @@ http://localhost:3000
 
 ### **Login Credentials**
 
-* **Admin →** `admin / admin`
-* **Candidate →** `user / user`
+* Can be use cause has integreted with supabase and use better auth
 
 ---
 
@@ -123,10 +112,10 @@ http://localhost:3000
 * Fields shown/hidden based on `required` property
 * Adaptive validation according to backend data definition
 
-### ✅ Profile Picture via Webcam Gesture (UI Ready)
+### ✅ Profile Picture via Webcam Gesture
 
 * Webcam component prepared with placeholder for gesture capture
-* WebGL/HandPose integration partially implemented (mock UI ready)
+* WebGL/HandPose integration partially implemented
 
 ### ✅ Responsive & Pixel-Perfect Design
 
@@ -171,8 +160,6 @@ http://localhost:3000
 
 ## 9. Future Improvements
 
-* Implement full CRUD operations using **Supabase** or **Firebase** for persistent data.
-* Integrate gesture-based photo capture with **Tensorflow/MediaPipe**.
 * Add **unit tests** using Jest and Playwright for UI validation.
 * Refactor component structure and hooks for improved modularization and maintainability.
 
