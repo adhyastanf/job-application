@@ -19,9 +19,9 @@ export async function middleware(request) {
 
 export const config = {
   matcher: [
-    '/admin/:path*',
-    '/applicant/:path*',
-    '/((?!api|_next/|favicon.ico|sign-in|sign-up|.*\\.(?:png|jpg|jpeg|svg|gif|webp)$).*)',
+    // '/admin/:path*',
+    // '/applicant/:path*',
+    // '/((?!api|_next/|favicon.ico|sign-in|sign-up|.*\\.(?:png|jpg|jpeg|svg|gif|webp)$).*)',
   ],
 };
 

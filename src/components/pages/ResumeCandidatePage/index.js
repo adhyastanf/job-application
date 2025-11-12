@@ -22,14 +22,16 @@ import { generateResumeSchema } from '@/lib/schema';
 import { cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { format } from 'date-fns/format';
-import { ArrowLeft, CalendarIcon, ChevronDown, ChevronRight, Upload } from 'lucide-react';
+import { ArrowLeft, CalendarIcon, ChevronDown, ChevronRight, Loader2, Upload } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { domicileOptions, listCountry } from './constant';
+import { useJobStore } from '@/lib/store/useJobStore';
 
-export default function ResumeCandidatePage({ jobConfigs }) {
+export default function ResumeCandidatePage() {
+  const { jobConfig, loadingConfig, fetchJobConfig } = useJobStore((state) => state);
   const [controls, setControls] = useState(null);
   const [success, setSuccess] = useState(false);
   const [capturedPhoto, setCapturedPhoto] = useState(false);
@@ -37,9 +39,9 @@ export default function ResumeCandidatePage({ jobConfigs }) {
   const [open, setOpen] = useState(false);
 
   const resumeSchema = useMemo(() => {
-    if (!jobConfigs) return null;
-    return generateResumeSchema(jobConfigs);
-  }, [jobConfigs]);
+    if (!jobConfig) return null;
+    return generateResumeSchema(jobConfig);
+  }, [jobConfig]);
 
   function isFieldRequired(config, key) {
     const field = config?.application_form?.sections?.[0]?.fields?.find((f) => f.key === key);
@@ -67,10 +69,6 @@ export default function ResumeCandidatePage({ jobConfigs }) {
     setSuccess(true);
   };
 
-  // useEffect(() => {
-  //   fetchJobConfig();
-  // }, [fetchJobConfig]);
-
   const handlePhotoCaptured = useCallback((img) => {
     setCapturedPhoto(img);
   }, []);
@@ -96,7 +94,16 @@ export default function ResumeCandidatePage({ jobConfigs }) {
     }
   };
 
-  // if (loadingConfig) return <div>Loading config...</div>;
+  useEffect(() => {
+    fetchJobConfig();
+  }, [fetchJobConfig]);
+
+  if (loadingConfig)
+    return (
+      <div className='flex items-center justify-center min-h-screen bg-background/50'>
+        <Loader2 className='animate-spin text-primary w-8 h-8' />
+      </div>
+    );
 
   if (success) return <SuccessComponent />;
 
@@ -189,7 +196,7 @@ export default function ResumeCandidatePage({ jobConfigs }) {
                       <FormItem>
                         <FormLabel className='text-xs font-normal'>
                           Full Name
-                          {isFieldRequired(jobConfigs, 'full_name') && <span className='text-red-500'>*</span>}
+                          {isFieldRequired(jobConfig, 'full_name') && <span className='text-red-500'>*</span>}
                         </FormLabel>
                         <FormControl>
                           <Input type='text' placeholder='Enter your full name' {...field} />
@@ -206,7 +213,7 @@ export default function ResumeCandidatePage({ jobConfigs }) {
                       <FormItem className='flex flex-col'>
                         <FormLabel className='text-xs font-normal'>
                           Date of Birth
-                          {isFieldRequired(jobConfigs, 'date_of_birth') && <span className='text-red-500'>*</span>}
+                          {isFieldRequired(jobConfig, 'date_of_birth') && <span className='text-red-500'>*</span>}
                         </FormLabel>
                         <Popover>
                           <PopoverTrigger asChild>
@@ -233,7 +240,7 @@ export default function ResumeCandidatePage({ jobConfigs }) {
                       <FormItem className='space-y-3'>
                         <FormLabel className='text-xs font-normal'>
                           Pronoun (gender)
-                          {isFieldRequired(jobConfigs, 'gender') && <span className='text-red-500'>*</span>}
+                          {isFieldRequired(jobConfig, 'gender') && <span className='text-red-500'>*</span>}
                         </FormLabel>
                         <FormControl>
                           <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className='flex items-center space-x-2'>
@@ -263,7 +270,7 @@ export default function ResumeCandidatePage({ jobConfigs }) {
                       <FormItem>
                         <FormLabel className='text-xs font-normal'>
                           Domicile
-                          {isFieldRequired(jobConfigs, 'domicile') && <span className='text-red-500'>*</span>}
+                          {isFieldRequired(jobConfig, 'domicile') && <span className='text-red-500'>*</span>}
                         </FormLabel>
                         <Select onValueChange={field.onChange} value={field.value}>
                           <FormControl>
@@ -293,7 +300,7 @@ export default function ResumeCandidatePage({ jobConfigs }) {
                       <FormItem>
                         <FormLabel className='text-xs font-normal'>
                           Phone Number
-                          {isFieldRequired(jobConfigs, 'phone_number') && <span className='text-red-500'>*</span>}
+                          {isFieldRequired(jobConfig, 'phone_number') && <span className='text-red-500'>*</span>}
                         </FormLabel>
                         <InputGroup>
                           <FormControl>
@@ -302,9 +309,12 @@ export default function ResumeCandidatePage({ jobConfigs }) {
                           <InputGroupAddon>
                             <PopoverComponent
                               trigger={
-                                <div className='flex items-center justify-center cursor-pointer'>
-                                  <img src={selected.flag} alt='flag' className='rounded-full w-4' />
-                                  <ChevronDown size={20} />
+                                <div className='flex items-center h-5'>
+                                  <div className='flex items-center justify-center cursor-pointer gap-2'>
+                                    <img src={selected.flag} alt='flag' className='rounded-full w-4' />
+                                    <ChevronDown size={20} className='text-neutral' />
+                                  </div>
+                                  <Separator orientation='vertical' className='mx-2 h-4 bg-neutral/40' />
                                 </div>
                               }
                             >
@@ -325,7 +335,7 @@ export default function ResumeCandidatePage({ jobConfigs }) {
                       <FormItem>
                         <FormLabel className='text-xs font-normal'>
                           Email
-                          {isFieldRequired(jobConfigs, 'email') && <span className='text-red-500'>*</span>}
+                          {isFieldRequired(jobConfig, 'email') && <span className='text-red-500'>*</span>}
                         </FormLabel>
                         <FormControl>
                           <Input type='email' placeholder='Enter your email address' {...field} />
@@ -342,7 +352,7 @@ export default function ResumeCandidatePage({ jobConfigs }) {
                       <FormItem>
                         <FormLabel className='text-xs font-normal'>
                           Linkedin Link
-                          {isFieldRequired(jobConfigs, 'linkedin_link') && <span className='text-red-500'>*</span>}
+                          {isFieldRequired(jobConfig, 'linkedin_link') && <span className='text-red-500'>*</span>}
                         </FormLabel>
                         <FormControl>
                           <Input type='text' placeholder='https://linkedin.com/in/username' {...field} />

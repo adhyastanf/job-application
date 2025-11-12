@@ -1,25 +1,24 @@
 import { z } from 'zod';
 
-export const jobSchema = z
-  .object({
-    jobName: z.string().nonempty('Job name is required'),
-    jobType: z.string().nonempty('Job Type is required'),
-    jobDesc: z.string().nonempty('Job Description is required').optional(),
-    candidate: z
-      .string()
-      .nonempty('Number of candidates is required')
-      .refine((val) => !isNaN(Number(val)) && Number(val) > 0, {
-        message: 'Must be a valid positive number',
-      }),
-    fullname: z.string().nonempty('Fullname is required'),
-    profile: z.string().nonempty('Profile is required'),
-    gender: z.string().nonempty('Gender is required'),
-    domicile: z.string().nonempty('Domicile is required'),
-    linkedin: z.string().nonempty('Linkedin is required'),
-    email: z.string().nonempty('Email is required'),
-    phone: z.string().nonempty('Phone Number is required'),
-    birth: z.string().nonempty('Date of Birth is required'),
-  })
+export const jobSchema = z.object({
+  jobName: z.string().nonempty('Job name is required'),
+  jobType: z.string().nonempty('Job Type is required'),
+  jobDesc: z.string().nonempty('Job Description is required').optional(),
+  candidate: z
+    .string()
+    .nonempty('Number of candidates is required')
+    .refine((val) => !isNaN(Number(val)) && Number(val) > 0, {
+      message: 'Must be a valid positive number',
+    }),
+  fullname: z.string().nonempty('Fullname is required'),
+  profile: z.string().nonempty('Profile is required'),
+  gender: z.string().nonempty('Gender is required'),
+  domicile: z.string().nonempty('Domicile is required'),
+  linkedin: z.string().nonempty('Linkedin is required'),
+  email: z.string().nonempty('Email is required'),
+  phone: z.string().nonempty('Phone Number is required'),
+  birth: z.string().nonempty('Date of Birth is required'),
+});
 
 export const resumeSchema = z.object({
   photo_profile: z.any().refine((val) => val !== null && val !== undefined, {
@@ -59,15 +58,15 @@ export function generateResumeSchema(config) {
 
     switch (key) {
       case 'photo_profile':
-        shape[key] = required ? z.string().min(1, { message: 'Photo is required' }) : z.string().optional();
+        shape[key] = required ? z.string().nonempty('Required') : z.string().optional();
         break;
 
       case 'full_name':
-        shape[key] = required ? z.string().min(1, { message: 'Full name is required' }) : z.string().optional();
+        shape[key] = required ? z.string().nonempty('Required') : z.string().optional();
         break;
 
       case 'email':
-        shape[key] = required ? z.string().email({ message: 'Invalid email address' }) : z.string().email().optional();
+        shape[key] = required ? z.string().email({ message: 'Please enter your email in the format: name@example.com' }) : z.string().email().optional();
         break;
 
       case 'phone_number':
@@ -75,19 +74,19 @@ export function generateResumeSchema(config) {
         break;
 
       case 'linkedin_link':
-        shape[key] = required ? z.string().url({ message: 'LinkedIn URL is required' }) : z.string().url().optional();
+        shape[key] = required ? z.string().url({ message: 'Please copy paste your Linkedin URL, example: https://www.linkedin.com/in/username' }) : z.string().url().optional();
         break;
 
       case 'gender':
-        shape[key] = required ? z.enum(['male', 'female'], { message: 'Gender is required' }) : z.enum(['male', 'female']).optional();
+        shape[key] = required ? z.enum(['male', 'female'], { message: 'Required' }) : z.enum(['male', 'female']).optional();
         break;
 
       case 'domicile':
-        shape[key] = required ? z.string().min(1, { message: 'Domicile is required' }) : z.string().optional();
+        shape[key] = required ? z.string().nonempty('Required') : z.string().optional();
         break;
 
       case 'date_of_birth':
-        shape[key] = required ? z.any().min(1, { message: 'Date of birth is required' }) : z.any().optional();
+        shape[key] = required ? z.any().nonempty('Required') : z.any().optional();
         break;
 
       default:

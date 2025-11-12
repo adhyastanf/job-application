@@ -3,6 +3,7 @@
 import { EmptyStateListIcon } from '@/components/assets/EmptyStateList';
 import { EmptyState } from '@/components/EmptyState';
 import PageContainer from '@/components/layout/page-container';
+import LoadingApplicantJobSkeleton from '@/components/Loading/LoadingApplicantJobSkeleton';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -34,7 +35,7 @@ function CardJobList({ data, loading }) {
   const isEmpty = data.length === 0;
 
   if (loading) {
-    return <div>loading...</div>;
+    return <LoadingApplicantJobSkeleton />;
   }
 
   if (isEmpty) {
